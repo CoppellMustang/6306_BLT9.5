@@ -1,15 +1,8 @@
----
-title: "BLT_9.5"
-author: "Manjula Kottegoda"
-date: "July 13, 2016"
-output: 
-  html_document:
-    keep_md: true
----
+# BLT_9.5
+Manjula Kottegoda  
+July 13, 2016  
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 ## Preparing Financial Data
 
@@ -21,27 +14,103 @@ Here we are using Agios Pharmaceuticals Inc. AGIO
 
 ### 1. Load require packages and download the data for the given stock
 
-```{r}
+
+```r
 require('tseries')
+```
+
+```
+## Loading required package: tseries
+```
+
+```r
 require('fpp') 
+```
+
+```
+## Loading required package: fpp
+```
+
+```
+## Loading required package: forecast
+```
+
+```
+## Loading required package: zoo
+```
+
+```
+## 
+## Attaching package: 'zoo'
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+```
+
+```
+## Loading required package: timeDate
+```
+
+```
+## This is forecast 7.1
+```
+
+```
+## Loading required package: fma
+```
+
+```
+## Loading required package: expsmooth
+```
+
+```
+## Loading required package: lmtest
+```
+
+```r
 #Download data series - get.hist.quote gets historical data of the given ticker symbol
 # Here we are using Agios Pharmaceuticals Inc. AGIO
 SNPdata <- get.hist.quote('AGIO',quote="Close")
+```
+
+```
+## Warning in download.file(url, destfile, method = method, quiet = quiet):
+## downloaded length 47716 != reported length 200
+```
+
+```
+## time series starts 2013-07-24
+```
+
+```r
 #Get count to see if download was successful
 length(SNPdata)
 ```
 
+```
+## [1] 753
+```
+
 ### 2. Calculate log returns.
-```{r}
+
+```r
 # Calculate log returns of same dataset
 SNPret <- log(lag(SNPdata)) - log(SNPdata)
 length(SNPret)
 ```
 
+```
+## [1] 752
+```
+
 
 
 ### 3. Calculate volatility measure.
-```{r}
+
+```r
 # Calculate Volatility for 250 trading days
 # 250 is the number of trading days and multiplication by 100 to get  as a percentage 
 SNPvol <- sd(SNPret) * sqrt(250) *100  
@@ -49,7 +118,8 @@ SNPvol <- sd(SNPret) * sqrt(250) *100
 
 
 ### 4. Calculate volatility over entire length of series for various three different decay factors.
-```{r}
+
+```r
 # Function to create volatility in a contiouus loopback
 # Author: Dr Monnie McGee
 Vol <- function(d, logrets){
@@ -70,7 +140,6 @@ Vol <- function(d, logrets){
 volest <- Vol(10, SNPret)     #Weight .1
 volest2 <- Vol(30, SNPret)    #Weight .33
 volest3 <- Vol(100, SNPret)   #Weight .99
-
 ```
 
 
@@ -78,11 +147,14 @@ volest3 <- Vol(100, SNPret)   #Weight .99
 
 ### 5. Plot the results, overlaying the volatility curves on the data, 
 
-```{r}
+
+```r
 plot(volest,type='l') # volatility of the stock
 lines(volest2,type='l', col = 'red')
 lines(volest3,type='l', col = 'blue') # smooth with higher weight
 ```
 
+![](BLT_95_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
-This is a graph of the volatility not the stock price. High peaks correspond to high fluctuations on the price of the particular stock.
+
+This is a graph of the volatility not the stock proce. High peaks correspond to high fluctuations on the price of the perticular stock.
