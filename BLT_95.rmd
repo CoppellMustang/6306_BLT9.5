@@ -48,7 +48,7 @@ SNPvol <- sd(SNPret) * sqrt(250) *100
 ```
 
 
-### 4. Calculate volatility over entire length of series for various three different decay factors.
+### 4. Calculate volatility over entire length of series for three different decay factors.
 ```{r}
 # Function to create volatility in a contiouus loopback
 # Author: Dr Monnie McGee
@@ -76,7 +76,7 @@ volest3 <- Vol(100, SNPret)   #Weight .99
 
 
 
-### 5. Plot the results, overlaying the volatility curves on the data, 
+### 5. Plot the results, overlaying the volatility curves on the data.
 
 ```{r}
 plot(volest,type='l') # volatility of the stock

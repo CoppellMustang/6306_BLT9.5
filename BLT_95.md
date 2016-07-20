@@ -117,7 +117,7 @@ SNPvol <- sd(SNPret) * sqrt(250) *100
 ```
 
 
-### 4. Calculate volatility over entire length of series for various three different decay factors.
+### 4. Calculate volatility over entire length of series for three different decay factors.
 
 ```r
 # Function to create volatility in a contiouus loopback
@@ -145,7 +145,7 @@ volest3 <- Vol(100, SNPret)   #Weight .99
 
 
 
-### 5. Plot the results, overlaying the volatility curves on the data, 
+### 5. Plot the results, overlaying the volatility curves on the data.
 
 
 ```r
@@ -157,4 +157,4 @@ lines(volest3,type='l', col = 'blue') # smooth with higher weight
 ![](BLT_95_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 
-This is a graph of the volatility not the stock proce. High peaks correspond to high fluctuations on the price of the perticular stock.
+This is a graph of the volatility not the stock price. High peaks correspond to high fluctuations on the price of the particular stock.
